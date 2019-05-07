@@ -3,7 +3,7 @@ import os
 import csv
 
 # connect to data
-budget_data = os.path.join('..', 'Resources', 'homework_03-Python_Instructions_PyBank_Resources_budget_data.csv')
+budget_data = os.path.join('..', 'Resources', 'budget_data.csv')
 
 with open(budget_data, newline='') as csvfile:
     csvreader = csv.reader(csvfile, delimiter=',')
@@ -58,7 +58,7 @@ with open(budget_data, newline='') as csvfile:
     # the :.2F code tells python to limit the number (a float, see above) to just 2 decimal places
     print(f'Average Change: ${avg_profit:.2F}')
     print(f'Greatest Increase in Profits: {max_month} (${max_profit})')
-    print(f'Greatest Decrease in Proftis: {min_month} (${min_profit})')
+    print(f'Greatest Decrease in Profits: {min_month} (${min_profit})')
 
 
 # TASK #7 export results to a text file
