@@ -5,6 +5,8 @@ import operator
 
 # connect to data
 election_data = os.path.join('..', 'Resources', 'election_data.csv')
+#election_data = '../Resources/election_data.csv'
+
 
 with open(election_data, newline='') as csvfile:
     csvreader = csv.reader(csvfile, delimiter=',')
@@ -18,9 +20,8 @@ with open(election_data, newline='') as csvfile:
     Correy_total = 0
     Li_total = 0
     OTooley_total = 0
-    # establish list to hold candidate names
-    candidate_list = []
-    unduplicated_candidates = []
+    # establish set to hold candidate names
+    unduplicated_candidates = set()
     
     # -----------------------------------------------------------------------------------------------
     # TASK #1 calculate total number of votes cast
@@ -36,20 +37,10 @@ with open(election_data, newline='') as csvfile:
     # TASK #2 generate list unique list of candidates
     # -----------------------------------------------------------------------------------------------
 
-        # append all of the values in candidate column to make an indexed list of all candidate names
-        #candidate_list.append(row[2])
-    ## >> test point >> print(len(candidate_list))
-
-        # loop through candidate list
-        #for x in candidate_list: 
-            # check if names exists in unique_list or not 
-            #if x not in unduplicated_candidates:    
-                # if name not in list, add it
-                #unduplicated_candidates.append(x) 
-    # >> test point >> print(unduplicated_candidates)
-
-        #unduplicated_candidates = set(candidate_list)
-    
+        # while looping through rows, begin to add candidate names to set 
+        # (as a set, it will only add unique names)  
+        unduplicated_candidates.add(row[2]) 
+     # >> test point >> print(unduplicated_candidates)
 
     # -----------------------------------------------------------------------------------------------
     # TASK #3 number of votes each candidate won
@@ -70,9 +61,6 @@ with open(election_data, newline='') as csvfile:
             OTooley_total = OTooley_total +1
 
     # >> test point >> print(Khan_total)
-    # >> test point >> print(Correy_total)
-    # >> test point >> print(Li_total)
-    # >> test point >> print(OTooley_total)
         
     # -----------------------------------------------------------------------------------------------
     # TASK #4 percentage of votes each candidate won
@@ -99,17 +87,17 @@ with open(election_data, newline='') as csvfile:
                         }
     # >> test point >> print(election_dict)
     
-        # run max function to identify key with max value 
+        # run max function to identify key in dict corresponding to max value 
         winner = max(election_dict.items(), key=operator.itemgetter(1))[0]
     # >> test point >> print(winner)
 
     # -----------------------------------------------------------------------------------------------
     # TASK  # 6 print election results to terminal  
     # -----------------------------------------------------------------------------------------------
-  
+
     print("Election Results\n")
     print("---------------------------------------------------\n")
-    print(f'Total Votes: {total_votes}\n')
+    print(f"Total Votes: {total_votes}\n")
     print("---------------------------------------------------\n")
     print(f'Khan: {Khan_precent:.3f}% {Khan_total}\n')
     print(f'Correy: {Correy_percent:.3f}% {Correy_total}\n')
